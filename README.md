@@ -27,6 +27,10 @@ Subsequent builds will only build the parquet virtual table extension.
 
 Run `./make-linux-pgo` to build an instrumented binary, run tests to collect real-life usage samples, then build an optimized binary. PGO seems to give a 5-10% reduction in query times.
 
+### Building (OS X)
+
+Run `./build-osx` and you should be good to go. It's very rough still, so be wary.
+
 ### Tests
 
 Run:
