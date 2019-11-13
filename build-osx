@@ -1,0 +1,21 @@
+# A very Ad-Hoc build script for OS X.
+# Verify you have the following packages installed from homebrew
+
+install_deps() {
+    brew install boost brotli apache-arrow snappy icu4c thrift
+}
+
+compile() {
+    icudir=/usr/local/Cellar/icu4c/64.2/lib
+
+    gcc -g -fPIC -Wall -dynamiclib -o libparquet.dylib -std=c++11 -stdlib=libc++ parquet/*.cc \
+        -L$icudir -lstdc++ -lc++abi -larrow -lboost_filesystem -lboost_regex -lboost_system \
+        -lbrotlicommon -lbrotlidec -lbrotlienc -licudata -licui18n -licuuc -lparquet -lsnappy -lthrift -lzstd
+}
+
+main() {
+    install_deps
+    compile
+}
+
+main
